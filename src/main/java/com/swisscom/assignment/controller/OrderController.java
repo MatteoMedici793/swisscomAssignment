@@ -34,7 +34,7 @@ public class OrderController {
     OrderMapper mapper = OrderMapper.INSTANCE;
 
     @GetMapping(value = "/{orderId}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<OrderDto> getOrder(@PathVariable String orderId){
+    public ResponseEntity<OrderDto> getOrder(@PathVariable Long orderId){
         try{
             OrderDto order = getOrderCommand.getOrder(orderId);
             return ok(order);

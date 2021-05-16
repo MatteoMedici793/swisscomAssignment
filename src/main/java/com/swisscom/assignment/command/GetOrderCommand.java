@@ -13,7 +13,7 @@ public class GetOrderCommand {
     @Autowired
     IOrderService orderService;
 
-    public OrderDto getOrder(String orderId){
+    public OrderDto getOrder(Long orderId){
         return orderService.getOrder(orderId);
     }
 }

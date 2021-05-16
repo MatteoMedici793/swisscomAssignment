@@ -15,7 +15,7 @@ public class Orders {
 
     @Id
     @GeneratedValue
-    private Long id;
+    private Long order_id;
 
     @NonNull
     @Column
@@ -25,6 +25,14 @@ public class Orders {
     @NonNull
     @Column
     private Long product_id;
+
+    @NonNull
+    @Column
+    private String product_type;
+
+    @NonNull
+    @Column
+    private String product_name;
 
     @NonNull
     @Column

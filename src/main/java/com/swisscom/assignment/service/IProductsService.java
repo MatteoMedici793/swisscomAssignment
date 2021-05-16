@@ -5,7 +5,6 @@ import com.swisscom.assignment.model.ProductDto;
 import java.util.List;
 
 public interface IProductsService {
-    List<ProductDto> getProducts();
 
     void deleteProduct(Long productId);
 

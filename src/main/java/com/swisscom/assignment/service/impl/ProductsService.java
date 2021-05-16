@@ -18,12 +18,6 @@ public class ProductsService implements IProductsService {
     ProductsRepository productsRepository;
 
     @Override
-    public List<ProductDto> getProducts() {
-        List<ProductDto> products = new ArrayList<>();
-        return products;
-    }
-
-    @Override
     public void deleteProduct(Long productId) {
         productsRepository.deleteById(productId);
     }
@@ -44,5 +38,11 @@ public class ProductsService implements IProductsService {
         int availability = getStockInfo(productId);
         quantity += availability;
         productsRepository.updateStock(quantity, productId);
+    }
+
+    public void updateProductAvailability(Long id, int quantity) {
+        int availability = getStockInfo(id);
+        availability = availability - quantity;
+        productsRepository.updateStock(availability, id);
     }
 }

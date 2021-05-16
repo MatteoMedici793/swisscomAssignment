@@ -23,9 +23,6 @@ import static org.springframework.http.ResponseEntity.ok;
 public class ProductsController {
 
     @Autowired
-    GetProductsCommand getProductsCommand;
-
-    @Autowired
     DeleteProductCommand deleteProductCommand;
 
     @Autowired
@@ -38,13 +35,6 @@ public class ProductsController {
     UpdateStockCommand updateStockCommand;
 
     private ProductMapper mapper = ProductMapper.INSTANCE;
-
-    @GetMapping(value = "/getProducts", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<List<ProductDto>> getProducts(){
-        List<ProductDto> product = getProductsCommand.getProducts();
-
-        return ok(product);
-    }
 
     @PostMapping(value = "/insertProduct", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Void> insertProduct(@RequestBody ProductRequest request){
@@ -80,10 +70,10 @@ public class ProductsController {
     }
 
     @PutMapping(value = "/{productId}/updateStock", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<String> updateStock(@PathVariable Long productId, @PathParam("quantity") int quantity){
+    public ResponseEntity<Void> updateStock(@PathVariable Long productId, @PathParam("quantity") int quantity){
         try{
             updateStockCommand.updateStock(productId, quantity);
-            return ok(null);
+            return ok().build();
         }catch(Exception e){
             return badRequest().build();
         }
